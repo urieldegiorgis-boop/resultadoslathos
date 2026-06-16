@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Casos de éxito · Testimonios</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f6fa;--bg2:#ffffff;--bg3:#eef0f6;--bg4:#e4e6ef;
+  --border:#d0d4e0;--border2:#b8bece;
+  --t1:#0f1220;--t2:#2a3050;--t3:#6070a0;
+  --green:#1a8a50;--red:#cc3333;--blue:#2563eb;--purple:#7c3aed;--teal:#0d9488;
+  --gold:#b8922e;--gold2:#caa53e;--navy:#1e2845;--navy2:#3a4060;
+  --accent:#b8922e;--font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+html,body{background:var(--bg);color:var(--t1);font-family:var(--font);font-size:13px;min-height:100vh}
+.n{font-variant-numeric:tabular-nums}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+
+/* TOPBAR */
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border);height:52px;display:flex;align-items:center;padding:0 20px;gap:16px;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:baseline;gap:4px;white-space:nowrap}
+.logo .word{font-family:'Georgia','Times New Roman',serif;font-size:19px;font-weight:700;letter-spacing:.06em;color:#0f1220}
+.logo .reg{font-size:9px;font-weight:600;color:var(--gold);padding-bottom:1px}
+.logo .div{width:1px;height:20px;background:var(--border);margin:0 4px}
+.logo .sub{font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.12em}
+.nav{display:flex;gap:3px;margin-left:8px}
+.nav-btn{padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;color:var(--t2);background:none;border:none;transition:all .12s;font-family:var(--font)}
+.nav-btn:hover{color:var(--t1);background:var(--bg3)}
+.nav-btn.act{color:#0f1220;background:var(--accent)}
+.store-note{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--t3);margin-left:auto}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
+.dot.warn{background:var(--gold)}
+
+/* VIEWS */
+.view{display:none;padding:16px 20px 70px;flex-direction:column;gap:14px;max-width:1400px;margin:0 auto}
+.view.act{display:flex}
+
+/* BUTTONS */
+.btn{padding:6px 12px;border-radius:6px;border:none;cursor:pointer;font-size:12px;font-weight:500;font-family:var(--font);transition:all .12s;display:inline-flex;align-items:center;gap:5px}
+.btn-ghost{background:var(--bg3);color:var(--t2);border:1px solid var(--border2)}
+.btn-ghost:hover{color:var(--t1);border-color:var(--t3)}
+.btn-primary{background:var(--accent);color:#0f1220;font-weight:600}
+.btn-primary:hover{background:var(--gold2)}
+
+/* CARD */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.card-head{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--navy2);background:var(--navy)}
+.card-title{font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.5px}
+.card-title span{display:block;font-weight:400;text-transform:none;letter-spacing:0;font-size:10.5px;color:rgba(255,255,255,.55);margin-top:2px}
+.card-body{padding:14px 16px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chart-box{position:relative;height:300px}
+
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.kpi{border-radius:10px;padding:15px 16px;border:1px solid transparent;transition:transform .15s;text-align:center}
+.kpi:hover{transform:translateY(-2px)}
+.kpi.c-purple{background:#a982ea;border-color:#9568e3}
+.kpi.c-green{background:#3fbf7a;border-color:#2fb069}
+.kpi.c-blue{background:#5b9bf2;border-color:#3f87ee}
+.kpi.c-teal{background:#34bfc8;border-color:#23aeb7}
+.kpi.c-gold{background:#dcae33;border-color:#c99e1f}
+.kpi-lbl{font-size:10px;color:rgba(15,18,32,.7);text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px;font-weight:700}
+.kpi-val{font-size:26px;font-weight:800;color:#0f1220;line-height:1;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+.kpi-sub{font-size:10.5px;color:rgba(15,18,32,.6);margin-top:6px;font-weight:500}
+
+/* FILTER BAR */
+.fbar{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fbar label{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px}
+.fg{display:flex;align-items:center;gap:6px}
+.fsep{width:1px;height:18px;background:var(--border)}
+select,input[type=text],input[type=number],input[type=url]{background:var(--bg3);border:1px solid var(--border2);color:#0f1220;padding:6px 9px;border-radius:5px;font-size:12px;font-family:var(--font);outline:none}
+select:focus,input:focus{border-color:var(--accent);background:#fff}
+
+/* FORM */
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field.full{grid-column:1/-1}
+.field label{font-size:10px;color:var(--t2);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.field input,.field select,.field textarea{width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--t1);padding:8px 10px;border-radius:6px;font-size:13px;font-family:var(--font);outline:none}
+.field textarea{resize:vertical;line-height:1.4}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);background:#fff}
+.field label .opt{font-weight:400;text-transform:none;letter-spacing:0;color:var(--t3)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.hint{font-size:11px;color:var(--t3);line-height:1.5}
+.del-btn{background:none;border:1px solid var(--border2);border-radius:5px;color:var(--t3);cursor:pointer;font-size:15px;line-height:1;width:26px;height:26px;transition:all .12s;display:inline-flex;align-items:center;justify-content:center}
+.del-btn:hover{color:var(--red);border-color:var(--red)}
+.edit-btn:hover{color:var(--accent);border-color:var(--accent)}
+.exp-btn{font-size:11px}
+.exp-btn:hover{color:var(--accent);border-color:var(--accent)}
+
+/* PILLS */
+.pill{display:inline-block;padding:2px 8px;border-radius:5px;font-size:10px;font-weight:700;white-space:nowrap}
+.pn-ia{background:rgba(124,58,237,.22);color:#6d28d9}
+.pn-ecom{background:rgba(37,99,235,.2);color:#1d4ed8}
+.pn-ventas{background:rgba(26,138,80,.22);color:#15803d}
+.pn-marca{background:rgba(184,146,46,.26);color:#7a5e12}
+.pn-clippea{background:rgba(13,148,136,.22);color:#0b7a70}
+.pn-otros{background:#d3d9e8;color:var(--t2);border:1px solid var(--border2)}
+.tc-testimonio{background:rgba(37,99,235,.2);color:#1d4ed8}
+.tc-caso{background:rgba(26,138,80,.22);color:#15803d}
+
+/* LISTA DE CASOS EN FILAS */
+.casos-rows{display:flex;flex-direction:column;gap:8px}
+.crow{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.crow.open{border-color:var(--border2)}
+.crow-head{display:flex;align-items:center;gap:9px;padding:9px 12px;cursor:pointer}
+.crow-head:hover{background:var(--bg3)}
+.crow-name{font-weight:700;color:var(--t1);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px}
+.crow-meta{font-size:11px;color:var(--t3);white-space:nowrap}
+.crow-spacer{margin-left:auto}
+.crow-actions{display:flex;gap:6px;align-items:center}
+.crow-detail{padding:2px 14px 12px;display:grid;grid-template-columns:1fr 1fr;gap:0 16px;border-top:1px solid var(--border);background:#fafbfe}
+.caso-f{padding:9px 0;border-bottom:1px solid var(--border)}
+.caso-f.full{grid-column:1/-1}
+.caso-f:last-child{border-bottom:none}
+.caso-f .fl{font-size:9.5px;color:var(--t3);text-transform:uppercase;letter-spacing:.6px;font-weight:700;margin-bottom:3px}
+.caso-f .fv{font-size:12.5px;color:var(--t2);line-height:1.45;white-space:pre-wrap}
+.caso-video{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;letter-spacing:.5px;border:1px solid var(--accent);color:var(--accent);border-radius:5px;padding:4px 7px;text-decoration:none}
+.caso-video:hover{background:var(--accent);color:#0f1220}
+.casos-count{font-size:11px;color:var(--t3)}
+
+.empty{text-align:center;padding:36px 20px;color:var(--t3);font-size:12px}
+.empty b{display:block;color:var(--t2);font-size:13px;margin-bottom:5px;font-weight:600}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:#fff;color:#0d0d0d;padding:11px 18px;border-radius:8px;font-size:13px;font-weight:600;z-index:9999;box-shadow:0 6px 24px rgba(30,40,80,.25);border-left:3px solid var(--accent);transition:opacity .3s}
+.toast.ok{border-left-color:var(--green)}
+.toast.err{border-left-color:var(--red)}
+
+@media(max-width:1000px){.kpi-row{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .topbar{flex-wrap:wrap;height:auto;padding:10px 14px;gap:10px}
+  .view{padding:12px 12px 60px}
+  .fgrid{grid-template-columns:1fr}
+  .crow-detail{grid-template-columns:1fr}
+  .crow-name{max-width:130px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">
+    <span class="word">LATHOS</span><span class="reg">®</span>
+    <span class="div"></span><span class="sub">Casos de éxito</span>
+  </div>
+  <nav class="nav">
+    <button class="nav-btn act" data-v="dashboard">Dashboard</button>
+    <button class="nav-btn" data-v="cargar">Cargar +</button>
+  </nav>
+  <div class="store-note" id="storeNote"></div>
+</header>
+
+<!-- ════════ DASHBOARD + CASOS (todo en uno) ════════ -->
+<section class="view act" id="v-dashboard">
+
+  <div class="kpi-row" id="kpiGrid"></div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-head"><span class="card-title">Reparto por vertical<span>Pulsa una porción para ver esos casos abajo</span></span></div>
+      <div class="card-body"><div class="chart-box"><canvas id="chartVert"></canvas></div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-title">Distribución por edad<span>Número de casos por rango de edad</span></span></div>
+      <div class="card-body"><div class="chart-box"><canvas id="chartEdad"></canvas></div></div>
+    </div>
+  </div>
+
+  <div class="fbar">
+    <div class="fg"><label>Buscar</label><input type="text" id="cf_q" placeholder="Texto libre…" style="min-width:150px"></div>
+    <div class="fsep"></div>
+    <div class="fg"><label>Tipo</label><select id="cf_tipo"></select></div>
+    <div class="fg"><label>Nicho</label><select id="cf_nicho"></select></div>
+    <div class="fg"><label>País</label><input type="text" id="cf_pais" placeholder="cualquiera" style="width:100px"></div>
+    <div class="fg"><label>Situación previa</label><input type="text" id="cf_situacion" placeholder="ej. estudiante" style="width:120px"></div>
+    <div class="fg"><label>Edad</label><input type="number" id="cf_edadMin" placeholder="mín" style="width:56px"><span style="color:var(--t3)">–</span><input type="number" id="cf_edadMax" placeholder="máx" style="width:56px"></div>
+    <button class="btn btn-ghost" id="cf_clear">Limpiar</button>
+    <span class="casos-count" id="casosFiltered" style="margin-left:auto"></span>
+  </div>
+
+  <div id="casosList" class="casos-rows"></div>
+</section>
+
+<!-- ════════ CARGAR ════════ -->
+<section class="view" id="v-cargar">
+  <div class="card">
+    <div class="card-head"><span class="card-title" id="casoFormTitle">Nuevo registro<span>Caso de éxito o testimonio</span></span></div>
+    <div class="card-body">
+      <div class="fgrid">
+        <div class="field"><label>Tipo</label><select id="c_tipo"></select></div>
+        <div class="field"><label>Nicho / Vertical</label><select id="c_nicho"></select></div>
+        <div class="field"><label>Nombre</label><input id="c_nombre" placeholder="Nombre y apellido"></div>
+        <div class="field"><label>Edad</label><input type="number" min="0" id="c_edad" placeholder="Ej. 24"></div>
+        <div class="field"><label>País</label><input id="c_pais" placeholder="Ej. España"></div>
+        <div class="field"><label>Situación previa</label><input id="c_situacion" placeholder="Ej. Estudiante, en paro, empleado..."></div>
+        <div class="field full"><label>Dolor principal</label><textarea id="c_dolor" rows="2" placeholder="¿Qué problema vivía?"></textarea></div>
+        <div class="field full"><label>Mayor miedo</label><textarea id="c_miedo" rows="2" placeholder="¿Qué le frenaba o le daba miedo?"></textarea></div>
+        <div class="field full"><label>Lo que más le sorprendió</label><textarea id="c_sorprendio" rows="2"></textarea></div>
+        <div class="field full"><label>Resultados</label><textarea id="c_resultados" rows="2" placeholder="Números, hitos, logros concretos"></textarea></div>
+        <div class="field full"><label>Transformación</label><textarea id="c_transformacion" rows="2" placeholder="El antes y el después"></textarea></div>
+        <div class="field full"><label>Enlace de video <span class="opt">(opcional)</span></label><input type="url" id="c_video" placeholder="https://..."></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="addCaso">Guardar registro</button>
+        <button class="btn btn-ghost" id="cancelCaso" style="display:none">Cancelar</button>
+        <span class="hint">Quedará guardado y aparecerá en el Dashboard.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+"use strict";
+
+/* ════════════ CONSTANTES ════════════ */
+const NICHOS = ['Inteligencia Artificial','Ecom','Ventas','Marca personal','Clippea','Otros'];
+const NICHO_CLS = {'Inteligencia Artificial':'ia','Ecom':'ecom','Ventas':'ventas','Marca personal':'marca','Clippea':'clippea','Otros':'otros'};
+const NICHO_HEX = {'Inteligencia Artificial':'#7c3aed','Ecom':'#2563eb','Ventas':'#1a8a50','Marca personal':'#b8922e','Clippea':'#0d9488','Otros':'#6070a0'};
+const TIPOS_CASO = ['Testimonio','Caso de éxito'];
+const fmt = new Intl.NumberFormat('es-ES');
+function nichoCls(n){ return 'pn-'+(NICHO_CLS[n]||'otros'); }
+function tipoCasoCls(t){ return t==='Testimonio'?'tc-testimonio':'tc-caso'; }
+
+/* ════════════ ESTADO ════════════ */
+const state = {
+  vista:'dashboard', casos:[], editCaso:null, casosOpen:{},
+  casosFilter:{q:'',tipo:'',nicho:'',pais:'',situacion:'',edadMin:'',edadMax:''}
+};
+
+/* ════════════ UTILIDADES ════════════ */
+function newId(){ return (typeof crypto!=='undefined'&&crypto.randomUUID)?crypto.randomUUID():'id_'+Date.now().toString(36)+Math.random().toString(36).slice(2,8); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function safeUrl(u){ u=String(u||'').trim(); return /^https?:\/\//i.test(u)?u:''; }
+function emptyMsg(t,s){ return `<div class="empty"><b>${esc(t)}</b>${s?`<div>${esc(s)}</div>`:''}</div>`; }
+function hoy(){ const d=new Date(); d.setHours(0,0,0,0); return d; }
+function toISO(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function toast(msg,type){ const t=document.createElement('div'); t.className='toast '+(type||''); t.textContent=msg; document.body.appendChild(t);
+  setTimeout(()=>{ t.style.opacity='0'; setTimeout(()=>t.remove(),300); },2400); }
+
+/* ════════════ SUPABASE ════════════ */
+/* ►►► PEGA AQUÍ TUS CREDENCIALES (Supabase → Project Settings → Data API / API) ◄◄◄ */
+const SUPABASE_URL = 'https://hseluvpwqjgallfyzori.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzZWx1dnB3cWpnYWxsZnl6b3JpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU3MjIxNjgsImV4cCI6MjA5MTI5ODE2OH0.hZ57PMADQPaqISd5ugWozVDQQHiR61aoPSQp1-mP-6s';
+const SB_TABLE = 'casos';
+
+let sb=null, sbReady=false;
+function initSupabase(){
+  if(!SUPABASE_URL || SUPABASE_URL.includes('TU_PROYECTO') || !SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes('TU_ANON_KEY')) return false;
+  try{ sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); sbReady=true; return true; }
+  catch(e){ console.error('Supabase init', e); return false; }
+}
+function fromRow(r){ return { id:r.id, fecha:String(r.created_at||'').slice(0,10), tipo:r.tipo, nicho:r.nicho, nombre:r.nombre, edad:r.edad||0, pais:r.pais||'', situacionPrevia:r.situacion_previa||'', dolorPrincipal:r.dolor_principal||'', mayorMiedo:r.mayor_miedo||'', sorprendio:r.sorprendio||'', resultados:r.resultados||'', transformacion:r.transformacion||'', video:r.video||'' }; }
+function toRow(c){ return { tipo:c.tipo, nicho:c.nicho, nombre:c.nombre, edad:c.edad||0, pais:c.pais||'', situacion_previa:c.situacionPrevia||'', dolor_principal:c.dolorPrincipal||'', mayor_miedo:c.mayorMiedo||'', sorprendio:c.sorprendio||'', resultados:c.resultados||'', transformacion:c.transformacion||'', video:c.video||'' }; }
+async function loadAll(){
+  if(!sbReady){ state.casos=[]; return; }
+  const { data, error } = await sb.from(SB_TABLE).select('*').order('created_at',{ascending:false});
+  if(error){ console.error(error); toast('Error al cargar: '+error.message,'err'); state.casos=[]; return; }
+  state.casos = (data||[]).map(fromRow);
+}
+
+/* ════════════ FILTRADO ════════════ */
+function casosFiltrados(){
+  const f=state.casosFilter;
+  const q=(f.q||'').toLowerCase().trim();
+  const pais=(f.pais||'').toLowerCase().trim();
+  const sit=(f.situacion||'').toLowerCase().trim();
+  const eMin=f.edadMin!==''?Number(f.edadMin):null;
+  const eMax=f.edadMax!==''?Number(f.edadMax):null;
+  return state.casos.filter(c=>{
+    if(f.tipo && c.tipo!==f.tipo) return false;
+    if(f.nicho && c.nicho!==f.nicho) return false;
+    if(pais && !String(c.pais||'').toLowerCase().includes(pais)) return false;
+    if(sit && !String(c.situacionPrevia||'').toLowerCase().includes(sit)) return false;
+    const ed=Number(c.edad)||0;
+    if(eMin!==null && ed<eMin) return false;
+    if(eMax!==null && ed>eMax) return false;
+    if(q){
+      const hay=[c.nombre,c.pais,c.nicho,c.tipo,c.situacionPrevia,c.dolorPrincipal,c.mayorMiedo,c.sorprendio,c.resultados,c.transformacion].join(' ').toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+/* ════════════ RENDER (router) ════════════ */
+function render(){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('act'));
+  document.querySelectorAll('.nav-btn').forEach(t=>t.classList.toggle('act',t.dataset.v===state.vista));
+  document.getElementById('v-'+state.vista).classList.add('act');
+  if(state.vista==='dashboard') renderDashboard();
+}
+
+/* ════════════ DASHBOARD ════════════ */
+let chVert=null, chEdad=null;
+function renderDashboard(){
+  const casos=state.casos, total=casos.length;
+  const tCount=casos.filter(c=>c.tipo==='Testimonio').length;
+  const cCount=casos.filter(c=>c.tipo==='Caso de éxito').length;
+  const edades=casos.map(c=>Number(c.edad)||0).filter(e=>e>0);
+  const edadMedia=edades.length?Math.round(edades.reduce((s,e)=>s+e,0)/edades.length):null;
+  const porVert=NICHOS.map(n=>({n,c:casos.filter(x=>x.nicho===n).length}));
+  const topVert=porVert.slice().sort((a,b)=>b.c-a.c)[0];
+  const topPct=(total&&topVert&&topVert.c)?Math.round(topVert.c/total*100):0;
+
+  const cards=[
+    {l:'Total publicados',v:total,c:'c-purple',sub:`${tCount} testimonios · ${cCount} casos`},
+    {l:'Testimonios',v:tCount,c:'c-blue',sub:total?Math.round(tCount/total*100)+'% del total':'—'},
+    {l:'Casos de éxito',v:cCount,c:'c-green',sub:total?Math.round(cCount/total*100)+'% del total':'—'},
+    {l:'Edad media',v:edadMedia!=null?edadMedia:'—',c:'c-gold',sub:edades.length?edades.length+' con edad':'sin datos'},
+    {l:'Vertical principal',v:(topVert&&topVert.c)?topPct+'%':'—',c:'c-teal',sub:(topVert&&topVert.c)?topVert.n:'sin datos'}
+  ];
+  document.getElementById('kpiGrid').innerHTML=cards.map(c=>`
+    <div class="kpi ${c.c}">
+      <div class="kpi-lbl">${esc(c.l)}</div>
+      <div class="kpi-val">${typeof c.v==='number'?fmt.format(c.v):esc(String(c.v))}</div>
+      <div class="kpi-sub">${esc(c.sub)}</div>
+    </div>`).join('');
+
+  if(typeof Chart!=='undefined'){
+    if(chVert) chVert.destroy();
+    chVert=new Chart(document.getElementById('chartVert'),{ type:'doughnut',
+      data:{labels:NICHOS,datasets:[{data:porVert.map(p=>p.c),backgroundColor:NICHOS.map(n=>NICHO_HEX[n]),borderColor:'#fff',borderWidth:3,hoverOffset:6}]},
+      options:{responsive:true,maintainAspectRatio:false,cutout:'58%',
+        onHover:(e,els)=>{ e.native.target.style.cursor=els.length?'pointer':'default'; },
+        onClick:(e,els)=>{ if(!els.length) return; const n=NICHOS[els[0].index]; filtrarPorVertical(n); },
+        plugins:{legend:{position:'bottom',labels:{boxWidth:10,boxHeight:10,usePointStyle:true,padding:12}},
+          tooltip:{backgroundColor:'#fff',titleColor:'#0f1220',bodyColor:'#2a3050',borderColor:'#d0d4e0',borderWidth:1,padding:11,
+            callbacks:{label:c=>{ const v=c.parsed,pct=total?Math.round(v/total*100):0; return ` ${c.label}: ${v} (${pct}%) · clic para filtrar`; }}}}}
+    });
+
+    const buckets=[['<18',e=>e<18],['18–24',e=>e>=18&&e<=24],['25–34',e=>e>=25&&e<=34],['35–44',e=>e>=35&&e<=44],['45+',e=>e>=45]];
+    const bd=buckets.map(b=>edades.filter(b[1]).length);
+    if(chEdad) chEdad.destroy();
+    chEdad=new Chart(document.getElementById('chartEdad'),{ type:'bar',
+      data:{labels:buckets.map(b=>b[0]),datasets:[{label:'Casos',data:bd,backgroundColor:'#b8922e',borderRadius:5,maxBarThickness:46}]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{backgroundColor:'#fff',titleColor:'#0f1220',bodyColor:'#2a3050',borderColor:'#d0d4e0',borderWidth:1,padding:11,callbacks:{label:c=>` ${c.parsed.y} caso(s)`}}},
+        scales:{x:{grid:{display:false}},y:{beginAtZero:true,ticks:{precision:0},grid:{color:'#e4e6ef'}}}}
+    });
+  }
+
+  renderCasosList();
+}
+function filtrarPorVertical(n){
+  state.casosFilter.nicho = state.casosFilter.nicho===n ? '' : n;
+  document.getElementById('cf_nicho').value = state.casosFilter.nicho;
+  renderCasosList();
+  document.getElementById('casosList').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ════════════ LISTA EN FILAS ════════════ */
+function casoRow(c){
+  const open=!!state.casosOpen[c.id];
+  const url=safeUrl(c.video);
+  const video=url?`<a class="caso-video" href="${esc(url)}" target="_blank" rel="noopener">▶ VIDEO</a>`:'';
+  const meta=[c.edad?esc(String(c.edad))+' años':'', esc(c.pais||'')].filter(Boolean).join(' · ');
+  const field=(label,val,full)=> val?`<div class="caso-f${full?' full':''}"><div class="fl">${esc(label)}</div><div class="fv">${esc(val)}</div></div>`:'';
+  const detail = open ? `<div class="crow-detail">
+      ${field('Situación previa', c.situacionPrevia)}
+      ${field('Dolor principal', c.dolorPrincipal)}
+      ${field('Mayor miedo', c.mayorMiedo)}
+      ${field('Lo que más le sorprendió', c.sorprendio)}
+      ${field('Resultados', c.resultados, true)}
+      ${field('Transformación', c.transformacion, true)}
+    </div>` : '';
+  return `<div class="crow${open?' open':''}">
+    <div class="crow-head" data-toggle="${c.id}">
+      <span class="crow-name">${esc(c.nombre||'Sin nombre')}</span>
+      <span class="pill ${tipoCasoCls(c.tipo)}">${esc(c.tipo)}</span>
+      <span class="pill ${nichoCls(c.nicho)}">${esc(c.nicho)}</span>
+      ${meta?`<span class="crow-meta">${meta}</span>`:''}
+      <span class="crow-spacer"></span>
+      <div class="crow-actions">
+        ${video}
+        <button class="del-btn edit-btn" data-edit-caso="${c.id}" title="Editar">✎</button>
+        <button class="del-btn exp-btn" data-toggle-btn="${c.id}" title="${open?'Cerrar':'Desplegar info'}">${open?'▾':'▸'}</button>
+        <button class="del-btn" data-del-caso="${c.id}" title="Borrar">×</button>
+      </div>
+    </div>
+    ${detail}
+  </div>`;
+}
+function renderCasosList(){
+  const list=casosFiltrados();
+  const fc=document.getElementById('casosFiltered');
+  if(fc) fc.textContent=`${list.length} de ${state.casos.length} registro(s)`;
+  const cont=document.getElementById('casosList');
+  if(!state.casos.length){ cont.innerHTML=emptyMsg('Aún no hay registros','Ve a «Cargar +» para añadir el primero.'); return; }
+  if(!list.length){ cont.innerHTML=emptyMsg('Ningún registro coincide con el filtro','Prueba a limpiar o ampliar la búsqueda.'); return; }
+  cont.innerHTML=list.slice().sort((a,b)=>String(b.fecha||'').localeCompare(String(a.fecha||''))).map(casoRow).join('');
+}
+
+/* ════════════ FORMULARIO ════════════ */
+const CASO_FIELDS=['c_nombre','c_edad','c_pais','c_situacion','c_dolor','c_miedo','c_sorprendio','c_resultados','c_transformacion','c_video'];
+function clearCasoForm(){ CASO_FIELDS.forEach(id=>document.getElementById(id).value=''); }
+async function addCaso(){
+  const g=id=>document.getElementById(id).value.trim();
+  const nombre=g('c_nombre');
+  if(!nombre){ toast('Falta el nombre','err'); return; }
+  const data={
+    tipo:document.getElementById('c_tipo').value,
+    nicho:document.getElementById('c_nicho').value,
+    nombre,
+    edad:Math.max(0,parseInt(document.getElementById('c_edad').value,10)||0),
+    pais:g('c_pais'),
+    situacionPrevia:g('c_situacion'),
+    dolorPrincipal:g('c_dolor'),
+    mayorMiedo:g('c_miedo'),
+    sorprendio:g('c_sorprendio'),
+    resultados:g('c_resultados'),
+    transformacion:g('c_transformacion'),
+    video:safeUrl(document.getElementById('c_video').value)
+  };
+  if(!sbReady){ toast('Configura Supabase para guardar','err'); return; }
+  const editing=!!state.editCaso;
+  if(editing){
+    const { data:row, error } = await sb.from(SB_TABLE).update(toRow(data)).eq('id',state.editCaso).select().single();
+    if(error){ toast('Error al actualizar: '+error.message,'err'); return; }
+    const i=state.casos.findIndex(x=>x.id===state.editCaso); if(i>=0) state.casos[i]=fromRow(row);
+    exitEditCaso();
+  } else {
+    const { data:row, error } = await sb.from(SB_TABLE).insert(toRow(data)).select().single();
+    if(error){ toast('Error al guardar: '+error.message,'err'); return; }
+    state.casos.unshift(fromRow(row));
+  }
+  clearCasoForm();
+  toast(editing?'Registro actualizado':'Registro guardado','ok');
+  state.vista='dashboard'; render();
+}
+function startEditCaso(id){
+  const c=state.casos.find(x=>x.id===id); if(!c) return;
+  state.vista='cargar'; render();
+  document.getElementById('c_tipo').value=c.tipo;
+  document.getElementById('c_nicho').value=c.nicho;
+  document.getElementById('c_nombre').value=c.nombre||'';
+  document.getElementById('c_edad').value=c.edad||'';
+  document.getElementById('c_pais').value=c.pais||'';
+  document.getElementById('c_situacion').value=c.situacionPrevia||'';
+  document.getElementById('c_dolor').value=c.dolorPrincipal||'';
+  document.getElementById('c_miedo').value=c.mayorMiedo||'';
+  document.getElementById('c_sorprendio').value=c.sorprendio||'';
+  document.getElementById('c_resultados').value=c.resultados||'';
+  document.getElementById('c_transformacion').value=c.transformacion||'';
+  document.getElementById('c_video').value=c.video||'';
+  state.editCaso=id;
+  document.getElementById('addCaso').textContent='Actualizar registro';
+  document.getElementById('casoFormTitle').firstChild.textContent='Editar registro';
+  document.getElementById('cancelCaso').style.display='';
+  const el=document.getElementById('c_nombre'); el.scrollIntoView({behavior:'smooth',block:'center'}); el.focus();
+}
+function exitEditCaso(){ state.editCaso=null; document.getElementById('addCaso').textContent='Guardar registro'; document.getElementById('casoFormTitle').firstChild.textContent='Nuevo registro'; document.getElementById('cancelCaso').style.display='none'; }
+function cancelEditCaso(){ clearCasoForm(); exitEditCaso(); state.vista='dashboard'; render(); }
+
+/* ════════════ SELECTS ════════════ */
+function fillSelects(){
+  document.getElementById('c_tipo').innerHTML=TIPOS_CASO.map(t=>`<option value="${t}">${t}</option>`).join('');
+  document.getElementById('c_nicho').innerHTML=NICHOS.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join('');
+  document.getElementById('cf_tipo').innerHTML='<option value="">Todos</option>'+TIPOS_CASO.map(t=>`<option value="${t}">${t}</option>`).join('');
+  document.getElementById('cf_nicho').innerHTML='<option value="">Todos</option>'+NICHOS.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join('');
+}
+
+/* ════════════ EVENTOS ════════════ */
+function wire(){
+  document.querySelectorAll('.nav-btn').forEach(t=>t.addEventListener('click',()=>{ state.vista=t.dataset.v; render(); }));
+  document.getElementById('addCaso').addEventListener('click',addCaso);
+  document.getElementById('cancelCaso').addEventListener('click',cancelEditCaso);
+  document.getElementById('casosList').addEventListener('click',async e=>{
+    if(e.target.closest('a.caso-video')) return; // dejar abrir el video
+    const ed=e.target.closest('[data-edit-caso]');
+    if(ed){ startEditCaso(ed.dataset.editCaso); return; }
+    const de=e.target.closest('[data-del-caso]');
+    if(de){ const id=de.dataset.delCaso; if(state.editCaso===id) exitEditCaso(); if(!confirm('¿Borrar este registro?')) return; if(!sbReady){ toast('Configura Supabase','err'); return; } const { error }=await sb.from(SB_TABLE).delete().eq('id',id); if(error){ toast('Error al borrar: '+error.message,'err'); return; } state.casos=state.casos.filter(c=>c.id!==id); delete state.casosOpen[id]; renderDashboard(); toast('Registro borrado','ok'); return; }
+    const tb=e.target.closest('[data-toggle-btn]'), th=e.target.closest('[data-toggle]');
+    const id=tb?tb.dataset.toggleBtn:(th?th.dataset.toggle:null);
+    if(id){ state.casosOpen[id]=!state.casosOpen[id]; renderCasosList(); }
+  });
+  const cfBind=(id,key)=>{ const el=document.getElementById(id); el.addEventListener('input',()=>{ state.casosFilter[key]=el.value; renderCasosList(); }); };
+  cfBind('cf_q','q'); cfBind('cf_pais','pais'); cfBind('cf_situacion','situacion'); cfBind('cf_edadMin','edadMin'); cfBind('cf_edadMax','edadMax');
+  document.getElementById('cf_tipo').addEventListener('change',e=>{ state.casosFilter.tipo=e.target.value; renderCasosList(); });
+  document.getElementById('cf_nicho').addEventListener('change',e=>{ state.casosFilter.nicho=e.target.value; renderCasosList(); });
+  document.getElementById('cf_clear').addEventListener('click',()=>{
+    state.casosFilter={q:'',tipo:'',nicho:'',pais:'',situacion:'',edadMin:'',edadMax:''};
+    ['cf_q','cf_pais','cf_situacion','cf_edadMin','cf_edadMax'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('cf_tipo').value=''; document.getElementById('cf_nicho').value='';
+    renderCasosList();
+  });
+}
+
+/* ════════════ INIT ════════════ */
+(async function init(){
+  if(window.Chart){ Chart.defaults.color='#2a3050'; Chart.defaults.borderColor='#e4e6ef'; Chart.defaults.font.family="'Inter',system-ui,sans-serif"; Chart.defaults.font.size=11; }
+  fillSelects(); wire();
+  const ok = initSupabase();
+  const note=document.getElementById('storeNote');
+  if(!ok){
+    if(note) note.innerHTML='<span class="dot warn"></span><span>Falta configurar Supabase: pega tu URL y anon key arriba del script.</span>';
+    render(); return;
+  }
+  await loadAll();
+  if(note) note.innerHTML='<span class="dot"></span><span>Conectado a Supabase · datos en la nube y compartidos.</span>';
+  render();
+})();
+</script>
+</body>
+</html>
