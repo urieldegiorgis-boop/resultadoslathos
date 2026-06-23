@@ -183,6 +183,8 @@ select:focus,input:focus{border-color:var(--accent);background:#fff}
     <div class="fg"><label>País</label><input type="text" id="cf_pais" placeholder="cualquiera" style="width:100px"></div>
     <div class="fg"><label>Situación previa</label><input type="text" id="cf_situacion" placeholder="ej. estudiante" style="width:120px"></div>
     <div class="fg"><label>Edad</label><input type="number" id="cf_edadMin" placeholder="mín" style="width:56px"><span style="color:var(--t3)">–</span><input type="number" id="cf_edadMax" placeholder="máx" style="width:56px"></div>
+    <div class="fg"><label>Desde</label><input type="date" id="cf_fechaDesde" style="width:140px"></div>
+    <div class="fg"><label>Hasta</label><input type="date" id="cf_fechaHasta" style="width:140px"></div>
     <button class="btn btn-ghost" id="cf_clear">Limpiar</button>
     <span class="casos-count" id="casosFiltered" style="margin-left:auto"></span>
   </div>
@@ -198,6 +200,7 @@ select:focus,input:focus{border-color:var(--accent);background:#fff}
       <div class="fgrid">
         <div class="field"><label>Tipo</label><select id="c_tipo"></select></div>
         <div class="field"><label>Nicho / Vertical</label><select id="c_nicho"></select></div>
+        <div class="field"><label>Fecha</label><input type="date" id="c_fecha"></div>
         <div class="field"><label>Nombre</label><input id="c_nombre" placeholder="Nombre y apellido"></div>
         <div class="field"><label>Edad</label><input type="number" min="0" id="c_edad" placeholder="Ej. 24"></div>
         <div class="field"><label>País</label><input id="c_pais" placeholder="Ej. España"></div>
@@ -233,7 +236,7 @@ function tipoCasoCls(t){ return t==='Testimonio'?'tc-testimonio':'tc-caso'; }
 /* ════════════ ESTADO ════════════ */
 const state = {
   vista:'dashboard', casos:[], editCaso:null, casosOpen:{},
-  casosFilter:{q:'',tipo:'',nicho:'',pais:'',situacion:'',edadMin:'',edadMax:''}
+  casosFilter:{q:'',tipo:'',nicho:'',pais:'',situacion:'',edadMin:'',edadMax:'',fechaDesde:'',fechaHasta:''}
 };
 
 /* ════════════ UTILIDADES ════════════ */
@@ -259,7 +262,7 @@ function initSupabase(){
   catch(e){ console.error('Supabase init', e); return false; }
 }
 function fromRow(r){ return { id:r.id, fecha:String(r.created_at||'').slice(0,10), tipo:r.tipo, nicho:r.nicho, nombre:r.nombre, edad:r.edad||0, pais:r.pais||'', situacionPrevia:r.situacion_previa||'', dolorPrincipal:r.dolor_principal||'', mayorMiedo:r.mayor_miedo||'', sorprendio:r.sorprendio||'', resultados:r.resultados||'', transformacion:r.transformacion||'', video:r.video||'' }; }
-function toRow(c){ return { tipo:c.tipo, nicho:c.nicho, nombre:c.nombre, edad:c.edad||0, pais:c.pais||'', situacion_previa:c.situacionPrevia||'', dolor_principal:c.dolorPrincipal||'', mayor_miedo:c.mayorMiedo||'', sorprendio:c.sorprendio||'', resultados:c.resultados||'', transformacion:c.transformacion||'', video:c.video||'' }; }
+function toRow(c){ var row={ tipo:c.tipo, nicho:c.nicho, nombre:c.nombre, edad:c.edad||0, pais:c.pais||'', situacion_previa:c.situacionPrevia||'', dolor_principal:c.dolorPrincipal||'', mayor_miedo:c.mayorMiedo||'', sorprendio:c.sorprendio||'', resultados:c.resultados||'', transformacion:c.transformacion||'', video:c.video||'' }; if(c.fecha) row.created_at=c.fecha; return row; }
 async function loadAll(){
   if(!sbReady){ state.casos=[]; return; }
   const { data, error } = await sb.from(SB_TABLE).select('*').order('created_at',{ascending:false});
@@ -275,6 +278,8 @@ function casosFiltrados(){
   const sit=(f.situacion||'').toLowerCase().trim();
   const eMin=f.edadMin!==''?Number(f.edadMin):null;
   const eMax=f.edadMax!==''?Number(f.edadMax):null;
+  const fDesde=(f.fechaDesde||'').trim();
+  const fHasta=(f.fechaHasta||'').trim();
   return state.casos.filter(c=>{
     if(f.tipo && c.tipo!==f.tipo) return false;
     if(f.nicho && c.nicho!==f.nicho) return false;
@@ -283,6 +288,8 @@ function casosFiltrados(){
     const ed=Number(c.edad)||0;
     if(eMin!==null && ed<eMin) return false;
     if(eMax!==null && ed>eMax) return false;
+    if(fDesde && String(c.fecha||'') < fDesde) return false;
+    if(fHasta && String(c.fecha||'') > fHasta) return false;
     if(q){
       const hay=[c.nombre,c.pais,c.nicho,c.tipo,c.situacionPrevia,c.dolorPrincipal,c.mayorMiedo,c.sorprendio,c.resultados,c.transformacion].join(' ').toLowerCase();
       if(!hay.includes(q)) return false;
@@ -400,8 +407,8 @@ function renderCasosList(){
 }
 
 /* ════════════ FORMULARIO ════════════ */
-const CASO_FIELDS=['c_nombre','c_edad','c_pais','c_situacion','c_dolor','c_miedo','c_sorprendio','c_resultados','c_transformacion','c_video'];
-function clearCasoForm(){ CASO_FIELDS.forEach(id=>document.getElementById(id).value=''); }
+const CASO_FIELDS=['c_fecha','c_nombre','c_edad','c_pais','c_situacion','c_dolor','c_miedo','c_sorprendio','c_resultados','c_transformacion','c_video'];
+function clearCasoForm(){ CASO_FIELDS.forEach(id=>document.getElementById(id).value=''); var cf=document.getElementById('c_fecha'); if(cf) cf.value=new Date().toISOString().slice(0,10); }
 async function addCaso(){
   const g=id=>document.getElementById(id).value.trim();
   const nombre=g('c_nombre');
@@ -409,6 +416,7 @@ async function addCaso(){
   const data={
     tipo:document.getElementById('c_tipo').value,
     nicho:document.getElementById('c_nicho').value,
+    fecha:document.getElementById('c_fecha').value,
     nombre,
     edad:Math.max(0,parseInt(document.getElementById('c_edad').value,10)||0),
     pais:g('c_pais'),
@@ -451,6 +459,7 @@ function startEditCaso(id){
   document.getElementById('c_resultados').value=c.resultados||'';
   document.getElementById('c_transformacion').value=c.transformacion||'';
   document.getElementById('c_video').value=c.video||'';
+  document.getElementById('c_fecha').value=c.fecha||'';
   state.editCaso=id;
   document.getElementById('addCaso').textContent='Actualizar registro';
   document.getElementById('casoFormTitle').firstChild.textContent='Editar registro';
@@ -484,12 +493,12 @@ function wire(){
     if(id){ state.casosOpen[id]=!state.casosOpen[id]; renderCasosList(); }
   });
   const cfBind=(id,key)=>{ const el=document.getElementById(id); el.addEventListener('input',()=>{ state.casosFilter[key]=el.value; renderCasosList(); }); };
-  cfBind('cf_q','q'); cfBind('cf_pais','pais'); cfBind('cf_situacion','situacion'); cfBind('cf_edadMin','edadMin'); cfBind('cf_edadMax','edadMax');
+  cfBind('cf_q','q'); cfBind('cf_pais','pais'); cfBind('cf_situacion','situacion'); cfBind('cf_edadMin','edadMin'); cfBind('cf_edadMax','edadMax'); cfBind('cf_fechaDesde','fechaDesde'); cfBind('cf_fechaHasta','fechaHasta');
   document.getElementById('cf_tipo').addEventListener('change',e=>{ state.casosFilter.tipo=e.target.value; renderCasosList(); });
   document.getElementById('cf_nicho').addEventListener('change',e=>{ state.casosFilter.nicho=e.target.value; renderCasosList(); });
   document.getElementById('cf_clear').addEventListener('click',()=>{
-    state.casosFilter={q:'',tipo:'',nicho:'',pais:'',situacion:'',edadMin:'',edadMax:''};
-    ['cf_q','cf_pais','cf_situacion','cf_edadMin','cf_edadMax'].forEach(id=>document.getElementById(id).value='');
+    state.casosFilter={q:'',tipo:'',nicho:'',pais:'',situacion:'',edadMin:'',edadMax:'',fechaDesde:'',fechaHasta:''};
+    ['cf_q','cf_pais','cf_situacion','cf_edadMin','cf_edadMax','cf_fechaDesde','cf_fechaHasta'].forEach(id=>document.getElementById(id).value='');
     document.getElementById('cf_tipo').value=''; document.getElementById('cf_nicho').value='';
     renderCasosList();
   });
